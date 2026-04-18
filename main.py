@@ -153,7 +153,7 @@ class EnrollmentWindow:
                                     "#00b4d8", self.capture_photo, 10)
         self.btn_capture.pack(side=tk.LEFT, padx=3)
         self.btn_capture.config(state=tk.DISABLED)
-        make_btn(btn_row, "📁 Upload", "#023e8a",
+        make_btn(btn_row, " Upload", "#023e8a",
                  self.upload_photo, 8).pack(side=tk.LEFT, padx=3)
 
         self.cam_status = tk.Label(cam_f, text="❌ No photo",
@@ -173,7 +173,7 @@ class EnrollmentWindow:
 
         fp_btn = tk.Frame(fp_f, bg=BG_PANEL)
         fp_btn.pack(pady=4)
-        make_btn(fp_btn, "👆 Scan Fingerprint",
+        make_btn(fp_btn, " Scan Fingerprint",
                  ACCENT2, self.scan_fingerprint, 18).pack(side=tk.LEFT, padx=3)
         make_btn(fp_btn, "🗑 Clear", "#560bad",
                  self.clear_fp, 7).pack(side=tk.LEFT, padx=3)
@@ -765,7 +765,7 @@ class BiometricKYCApp:
         threading.Thread(target=check, daemon=True).start()
 
     def _update_clock(self):
-        now = datetime.datetime.now().strftime("📅 %d %b %Y  |  🕐 %I:%M:%S %p")
+        now = datetime.datetime.now().strftime(" %d %b %Y  |   %I:%M:%S %p")
         self.clock_label.config(text=now)
         self.root.after(1000, self._update_clock)
 
