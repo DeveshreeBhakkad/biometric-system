@@ -1,0 +1,31 @@
+# Virtual environment
+venv/
+env/
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Database — contains real customer data, never commit
+*.db
+*.sqlite
+*.sqlite3
+
+# Generated KYC cards — customer data
+outputs/
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
