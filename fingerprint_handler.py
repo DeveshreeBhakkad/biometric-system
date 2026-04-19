@@ -14,11 +14,13 @@ import random
 
 # ─── MFS100 DLL Search Paths ───
 DLL_SEARCH_PATHS = [
+    r"C:\Program Files\Mantra\MFS100\Driver\MFS100Test\MFS100Dll.dll",
+    r"C:\Program Files\Mantra\MFS100\Driver\Driver\Win-10-X64\MFS100CI.dll",
     r"C:\Windows\System32\MFS100.dll",
     r"C:\Mantra\MFS100\MFS100.dll",
     r"C:\Program Files\Mantra\MFS100.dll",
     r"C:\Program Files (x86)\Mantra\MFS100.dll",
-    r"MFS100.dll",  # if in PATH
+    r"MFS100.dll",
 ]
 
 # ─── MFS100 Constants ───
