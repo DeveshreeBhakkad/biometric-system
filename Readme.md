@@ -57,7 +57,7 @@ biometric-system/
 
 ## 📸 Demo
 
-(Add screenshot here later)
+![App Screenshot](screenshot.png)
 
 ---
 
