@@ -100,7 +100,7 @@ class BiometricKYCApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Biometric Scanner")
-        self.root.geometry("420x620")
+        self.root.geometry("420x650")
         self.root.configure(bg="white")
 
         self.capture_count = 1
@@ -131,6 +131,15 @@ class BiometricKYCApp:
                   fg="white",
                   command=self.capture).pack(pady=10)
 
+        tk.Button(root,
+                  text="View Records",
+                  bg="gray",
+                  fg="white",
+                  command=self.view_records).pack(pady=5)
+
+    # =========================
+    # CAPTURE FUNCTION
+    # =========================
     def capture(self):
         name = self.name_entry.get().strip()
 
@@ -153,14 +162,13 @@ class BiometricKYCApp:
                 self.img_tk = img_tk
                 self.image_label.config(image=self.img_tk)
 
-                # Get location
+                # Location
                 lat, lon, city, country, address = get_location()
 
-                # Save to DB
+                # Save
                 save_to_db(name, "Mantra", image_path, data,
                            lat, lon, city, country, address)
 
-                # UI updates
                 self.status.config(text=f"Saved Capture #{self.capture_count} ✅", fg="green")
 
                 if lat and lon:
@@ -177,6 +185,57 @@ class BiometricKYCApp:
 
         else:
             self.status.config(text="Capture failed ❌", fg="red")
+
+    # =========================
+    # VIEW RECORDS
+    # =========================
+    def view_records(self):
+        win = tk.Toplevel(self.root)
+        win.title("Saved Records")
+        win.geometry("500x600")
+
+        conn = sqlite3.connect("biometric.db")
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT name, image_path, city, country FROM users")
+        rows = cursor.fetchall()
+        conn.close()
+
+        canvas = tk.Canvas(win)
+        canvas.pack(side="left", fill="both", expand=True)
+
+        scrollbar = tk.Scrollbar(win, command=canvas.yview)
+        scrollbar.pack(side="right", fill="y")
+
+        canvas.configure(yscrollcommand=scrollbar.set)
+
+        frame = tk.Frame(canvas)
+        canvas.create_window((0, 0), window=frame, anchor="nw")
+
+        def on_configure(event):
+            canvas.configure(scrollregion=canvas.bbox("all"))
+
+        frame.bind("<Configure>", on_configure)
+
+        for row in rows:
+            name, image_path, city, country = row
+
+            tk.Label(frame, text=f"Name: {name}",
+                     font=("Arial", 10, "bold")).pack()
+
+            if os.path.exists(image_path):
+                img = Image.open(image_path)
+                img = img.resize((120, 150))
+                img_tk = ImageTk.PhotoImage(img)
+
+                label = tk.Label(frame, image=img_tk)
+                label.image = img_tk
+                label.pack()
+
+            tk.Label(frame, text=f"{city}, {country}",
+                     fg="blue").pack()
+
+            tk.Label(frame, text="-------------------").pack(pady=5)
 
 
 # =========================
