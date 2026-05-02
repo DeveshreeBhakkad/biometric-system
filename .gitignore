@@ -1,31 +1,68 @@
-# Virtual environment
-venv/
-env/
-.env
-
-# Python cache
+# =========================
+# PYTHON
+# =========================
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-
-# Database — contains real customer data, never commit
 *.db
-*.sqlite
 *.sqlite3
+*.log
+.vs/
 
-# Generated KYC cards — customer data
+# Virtual environment
+venv/
+.env/
+
+# =========================
+# DATABASE (IMPORTANT)
+# =========================
+biometric.db
+biometric_kyc.db
+
+# =========================
+# OUTPUT FILES
+# =========================
 outputs/
+*.bmp
+*.png
+*.jpg
 
-# VS Code
+# =========================
+# VS CODE
+# =========================
 .vscode/
 
-# PyCharm
-.idea/
+# =========================
+# VISUAL STUDIO (C#)
+# =========================
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
 
-# OS files
+# Build folders
+bin/
+obj/
+
+# Debug / Release
+Debug/
+Release/
+x86/
+x64/
+
+# =========================
+# DLL / EXE (OPTIONAL)
+# =========================
+*.exe
+*.dll
+
+# ⚠️ BUT KEEP THIS (important)
+!MFS100Bridge.exe
+!MANTRA.MFS100.dll
+
+# =========================
+# OS FILES
+# =========================
 .DS_Store
 Thumbs.db
-
-# Logs
-*.log

@@ -1,0 +1,9 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="MFS100Bridge/MFS100Bridge.csproj" Id="7ba4ea0b-9297-45b5-83c7-a04b05630ef2">
+    <Platform Solution="*|x86" Project="x86" />
+  </Project>
+</Solution>
